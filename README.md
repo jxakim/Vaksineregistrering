@@ -18,14 +18,3 @@ tlf (INT)
 mail (STRING)
 adresse (STRING)
 postnr (INT)
-
-create table avtale(
-	avtId int AUTO_INCREMENT,
-    brukerId int,
-    dato date,
-    tid time,
-    lokasjon varchar(1),
-    PRIMARY KEY (avtId),
-    FOREIGN KEY (brukerId) REFERENCES brukerdata (brukerId)
-);
-

@@ -1,29 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Vaksineregistrasjon</title>
+    <title>Vaksineavtale</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="HandleData.js"></script>
 </head>
 
 <body>
-    <form id="register">
-        <h1 style="text-align: center;">Vaksineregistrering</h1>
-      
-        <label for="name">Navn:</label>
-        <input type="text" id="name" name="name" required>
-    
-        <label for="lastname">Etternavn:</label>
-        <input type="text" id="lastname" name="lastname" required>
-        
-        <button class="submitbtn" type="submit">Registrer Innføring</button>
-        
-        <p id="error" style="color:red; text-align:center;"><br></p>
-      </form>
+    <div class="container">
+        <form id="register" onsubmit="event.preventDefault(); Register_Data();">
+            <h1>Vaksineavtale</h1>
+            <label for="navn">Navn:</label>
+            <input type="text" id="navn" name="navn" required maxlength="20">
+            <label for="etternavn">Etternavn:</label>
+            <input type="text" id="etternavn" name="etternavn" required maxlength="30">
+            <label for="telefon">Telefon:</label>
+            <input type="text" id="telefon" name="telefon" required maxlength="8">
+            <label for="mail">Email:</label>
+            <input type="text" id="mail" name="mail" required maxlength="50">
+            <label for="adresse">Adresse:</label>
+            <input type="text" id="adresse" name="adresse" required maxlength="40">
+            <label for="postnr">Post:</label>
+            <input type="text" id="postnr" name="postnr" required maxlength="11">
+            <button class="submitbtn" type="submit">Registrer Innføring</button>
+        </form>
+
+        <div class="table-container">
+            <h2>Registreringer</h2>
+            <table id="Datatabell">
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Etternavn</th>
+                        <th>Telefon</th>
+                        <th>Email</th>
+                        <th>adressee</th>
+                        <th>Postnr</th>
+                        <th>BrukerId</th>
+                        <th>Handling</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>
-
-<script type="text/javascript" src="handler.js"></script>
-<link rel="stylesheet" href="style.css"/>
