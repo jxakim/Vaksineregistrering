@@ -6,27 +6,27 @@ $dbname = "vaksineteam";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-# Sjekk etter connection errrors
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-# Sjekker etter post requests og tar inn daten fra requestn
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $brukerId = $_POST['brukerId'];
     $navn = $_POST['navn'];
     $etternavn = $_POST['etternavn'];
     $telefon = $_POST['telefon'];
-    $mail = $_POST['mail'];
-    $adresse = $_POST['adresse'];
-    $postnr = $_POST['postnr'];
-    
-    # Kjør sql kode for å legge innd enne dataen
-    $sql = "INSERT INTO brukerdata (navn, etternavn, telefon, mail, adresse, postnr) VALUES ('$navn', '$etternavn', '$telefon', '$mail', '$adresse', '$postnr')";
+    $dato = $_POST['dato'];
+    $tid = $_POST['tid'];
+    $lokasjon = $_POST['lokasjon'];
 
-    if ($conn->query($sql) === TRUE) {
+    $sql1 = "INSERT INTO brukerdata (brukerId, navn, etternavn, telefon) VALUES ('$brukerId', '$navn', '$etternavn', '$telefon')";
+    $sql2 = "INSERT INTO avtale (brukerId, dato, tid, lokasjon) VALUES ('$brukerId', '$dato', '$tid', '$lokasjon')";
+
+    if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE) {
         echo "Dataen er nå lagt til i databasen.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql1 . "<br>" . $conn->error;
+        echo "Error: " . $sql2 . "<br>" . $conn->error;
     }
 }
 

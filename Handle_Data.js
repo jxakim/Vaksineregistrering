@@ -1,39 +1,38 @@
 let registrations = [];
 
-Update_Data(); // Oppdater tabellen til å være lik databasen.
+Update_Data();
 
-// Håndtering av registrering av data
+// Registrering av data
 function Register_Data () {
-    // Få innholdet til feltene
+    let brukerId = document.getElementById("brukerId").value;
     let navn = document.getElementById("navn").value;
     let etternavn = document.getElementById("etternavn").value;
     let telefon = document.getElementById("telefon").value;
-    let mail = document.getElementById("mail").value;
-    let adresse = document.getElementById("adresse").value;
-    let postnr = document.getElementById("postnr").value;
+    let dato = document.getElementById("dato").value;
+    let tid = document.getElementById("tid").value;
+    let lokasjon = document.getElementById("lokasjon").value;
 
-    if (!navn || !etternavn || !telefon || !mail || !adresse || !postnr) {
+    if (!brukerId || !navn || !etternavn || !telefon || !dato || !tid || !lokasjon) {
         errorElement.innerText = "Alle felt må fylles ut.";
         return;
     }
 
-    // Legg til denne dataen i tabellen
     let formData = new FormData();
+    formData.append('brukerId', brukerId);
     formData.append('navn', navn);
     formData.append('etternavn', etternavn);
     formData.append('telefon', telefon);
-    formData.append('mail', mail);
-    formData.append('adresse', adresse);
-    formData.append('postnr', postnr);
+    formData.append('dato', dato);
+    formData.append('tid', tid);
+    formData.append('lokasjon', lokasjon);
 
-    // Få tak i php fila som kobler opp med databasen (registrering)
     fetch('PHP/Register_Data.php', {
         method: 'POST',
         body: formData
     })
     .then(response => response.text())
     .then(result => {
-        // Håndtering som skjer etter forespørselen
+        console.log(result); // Debugging
         Update_Data();
         document.getElementById("register").reset();
     })
@@ -41,6 +40,7 @@ function Register_Data () {
 
 }
 
+// Sletting av data
 function Unregister_Data(i) {
     let dataToRemove = registrations[i];
 
@@ -60,7 +60,6 @@ function Unregister_Data(i) {
 }
 
 // Oppdateringer av data
-
 function Update_Table() {
     let table = document.getElementById("Datatabell");
 
@@ -79,13 +78,14 @@ function Update_Table() {
         let cell7 = row.insertCell(6);
         let cell8 = row.insertCell(7);
 
-        cell1.innerHTML = registration.navn;
-        cell2.innerHTML = registration.etternavn;
-        cell3.innerHTML = registration.telefon;
-        cell4.innerHTML = registration.mail;
-        cell5.innerHTML = registration.adresse;
-        cell6.innerHTML = registration.postnr;
-        cell7.innerHTML = registration.brukerId;   
+        cell1.innerHTML = registration.brukerId;
+        cell2.innerHTML = registration.navn;
+        cell3.innerHTML = registration.etternavn;
+        cell4.innerHTML = registration.telefon;
+        cell5.innerHTML = registration.dato;
+        cell6.innerHTML = registration.tid;
+        cell7.innerHTML = registration.lokasjon;
+        
 
         let removeButton = document.createElement("button");
         removeButton.innerHTML = "Fjern";
@@ -96,13 +96,18 @@ function Update_Table() {
     });
 }
 
+// Oppdater tabellen til å være lik databasen
 function Update_Data() {
     fetch('PHP/Retrieve_Data.php')
     .then(response => response.json())
     .then(data => {
-        registrations = data;
-        console.log(registrations);
-        Update_Table();
+        if (Array.isArray(data)) {
+            registrations = data;
+            console.log(registrations);
+            Update_Table();
+        } else {
+            console.error('Data retrieved is not in the expected format.');
+        }
     })
     .catch(error => console.error('Error:', error));
 }

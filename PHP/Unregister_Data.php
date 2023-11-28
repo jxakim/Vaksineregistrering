@@ -13,19 +13,16 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $requestData = json_decode(file_get_contents('php://input'), true);
 
-    $navn = $requestData['navn'];
-    $etternavn = $requestData['etternavn'];
-    $telefon = $requestData['telefon'];
-    $mail = $requestData['mail'];
-    $adresse = $requestData['adresse'];
-    $postnr = $requestData['postnr'];
+    $brukerId = $requestData['brukerId'];
 
-    $sql = "DELETE FROM brukerdata WHERE navn='$navn' AND etternavn='$etternavn' AND telefon='$telefon' AND mail='$mail' AND adresse='$adresse' AND postnr='$postnr'";
+    $sql1 = "DELETE FROM brukerdata WHERE brukerId='$brukerId'";
+    $sql2 = "DELETE FROM avtale WHERE brukerId='$brukerId'";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE) {
         echo "Dataen er nå fjernet fra databasen.";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql1 . "<br>" . $conn->error;
+        echo "Error: " . $sql2 . "<br>" . $conn->error;
     }
 }
 
