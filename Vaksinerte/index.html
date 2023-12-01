@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registrer Vaksinerte</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="Handle_Data.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <form id="register" onsubmit="event.preventDefault(); Register_Data();">
+            <h1>Registrer Vaksinerte</h1>
+            
+            <!-- BrukerId -->
+            <label for="brukerId">Bruker Id</label>
+            <input type="text" id="brukerId" name="brukerId" required maxlength="11">
+             
+            <!-- AnsattId -->
+            <label for="ansattId">Ansatt Id</label>
+            <input type="text" id="brukerId" name="ansattId" required maxlength="11">
+            
+            <!-- Lokasjon -->
+            <label for="lokasjon">Lokasjon: </label>
+            <select id="lokasjon" name="lokasjon">
+                <option value="Lokasjon 1" selected>Lokasjon 1</option>
+                <option value="Lokasjon 2">Lokasjon 2</option>
+                <option value="Lokasjon 3">Lokasjon 3</option>
+            </select>
+
+            <!-- Tid -->
+            <label for="tid">Tid:</label>
+            <input type="time" id="tid" name="tid" required>
+
+            <!-- Date -->
+            <label for="dato">Dato:</label>
+            <input type="date" id="dato" name="dato" required>
+
+            <button class="submitbtn" type="submit">Registrer Innføring</button>
+        </form>
+
+        <!-- Tabell med data -->
+        <div class="table-container">
+            <h2>Registreringer</h2>
+            <table id="Datatabell">
+                <thead>
+                    <tr>
+                        <th>VaksineId</th>
+                        <th>BrukerId</th>
+                        <th>AnsattId</th>
+                        <th>Dato</th>
+                        <th>Tid</th>
+                        <th>Lokasjon</th>
+                        <th>Handling</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

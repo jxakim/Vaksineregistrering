@@ -1,10 +1,13 @@
 let registrations = [];
 
-Update_Data();
+let brukerid_start_increment = 1000;
+let latest_brukerId;
+
+Update_Data()
 
 // Registrering av data
 function Register_Data () {
-    let brukerId = document.getElementById("brukerId").value;
+    let brukerId = latest_brukerId;
     let navn = document.getElementById("navn").value;
     let etternavn = document.getElementById("etternavn").value;
     let telefon = document.getElementById("telefon").value;
@@ -96,6 +99,7 @@ function Update_Table() {
     });
 }
 
+
 // Oppdater tabellen til å være lik databasen
 function Update_Data() {
     fetch('PHP/Retrieve_Data.php')
@@ -103,7 +107,15 @@ function Update_Data() {
     .then(data => {
         if (Array.isArray(data)) {
             registrations = data;
-            console.log(registrations);
+
+            if (registrations.length === 0) {
+                latest_brukerId = brukerid_start_increment;
+            } else {
+                const maxId = Math.max(...registrations.map(item => parseInt(item.brukerId))); // finner den største brukerId i registrations arrayen
+                latest_brukerId = maxId + 1 || brukerid_start_increment;
+                console.log(registrations.length);
+            }
+
             Update_Table();
         } else {
             console.error('Data retrieved is not in the expected format.');
