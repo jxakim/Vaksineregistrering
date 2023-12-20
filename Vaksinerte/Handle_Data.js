@@ -1,30 +1,27 @@
 let registrations = [];
 
-let brukerid_start_increment = 1000;
-let latest_brukerId;
+let vaksineid_start_increment = 1;
 
 Update_Data();
 
 // Registrering av data
 function Register_Data () {
-    let brukerId = latest_brukerId;
-    let navn = document.getElementById("navn").value;
-    let etternavn = document.getElementById("etternavn").value;
-    let telefon = document.getElementById("telefon").value;
+    let vaksineId = latest_vaksineid;
+    let brukerId = document.getElementById("brukerId").value;
+    let ansattId = document.getElementById("ansattId").value;
     let dato = document.getElementById("dato").value;
     let tid = document.getElementById("tid").value;
     let lokasjon = document.getElementById("lokasjon").value;
 
-    if (!brukerId || !navn || !etternavn || !telefon || !dato || !tid || !lokasjon) {
+    if (!vaksineId || !brukerId || !ansattId || !dato || !tid || !lokasjon) {
         errorElement.innerText = "Alle felt må fylles ut.";
         return;
     }
 
     let formData = new FormData();
+    formData.append('vaksineId', vaksineId);
     formData.append('brukerId', brukerId);
-    formData.append('navn', navn);
-    formData.append('etternavn', etternavn);
-    formData.append('telefon', telefon);
+    formData.append('ansattId', ansattId);
     formData.append('dato', dato);
     formData.append('tid', tid);
     formData.append('lokasjon', lokasjon);
@@ -81,13 +78,12 @@ function Update_Table() {
         let cell7 = row.insertCell(6);
         let cell8 = row.insertCell(7);
 
-        cell1.innerHTML = registration.brukerId;
-        cell2.innerHTML = registration.navn;
-        cell3.innerHTML = registration.etternavn;
-        cell4.innerHTML = registration.telefon;
-        cell5.innerHTML = registration.dato;
-        cell6.innerHTML = registration.tid;
-        cell7.innerHTML = registration.lokasjon;
+        cell1.innerHTML = registration.vaksineId;
+        cell2.innerHTML = registration.brukerId;
+        cell3.innerHTML = registration.ansattId;
+        cell4.innerHTML = registration.dato;
+        cell5.innerHTML = registration.tid;
+        cell6.innerHTML = registration.lokasjon;
         
 
         let removeButton = document.createElement("button");
@@ -95,7 +91,7 @@ function Update_Table() {
         removeButton.onclick = function() {
             Unregister_Data(i);
         };
-        cell8.appendChild(removeButton);
+        cell7.appendChild(removeButton);
     });
 }
 
@@ -107,12 +103,12 @@ function Update_Data() {
     .then(data => {
         if (Array.isArray(data)) {
             registrations = data;
-
+ 
             if (registrations.length === 0) {
-                latest_brukerId = brukerid_start_increment;
+                latest_vaksineid = vaksineid_start_increment;
             } else {
-                const maxId = Math.max(...registrations.map(item => parseInt(item.brukerId))); // finner den største brukerId i registrations arrayen
-                latest_brukerId = maxId + 1 || brukerid_start_increment;
+                const maxId = Math.max(...registrations.map(item => parseInt(item.vaksineId)));
+                latest_vaksineid = maxId + 1 || vaksineid_start_increment;
                 console.log(registrations.length);
             }
 

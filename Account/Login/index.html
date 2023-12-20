@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css" type="text/css"/>
+    <title>Logg Inn</title>
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>Logg Inn</h2>
+        <form onsubmit="event.preventDefault(); formSubmit();">
+            <label for="brukernavn">Brukernavn:</label>
+            <input type="text" id="brukernavn" name="brukernavn" required>
+
+            <label for="passord">Passord:</label>
+            <input type="password" id="passord" name="passord" required>
+
+            <button type="submit" id="submit_button">Logg inn</button>
+        </form>
+
+        <br>
+
+        <p id="output"></p>
+        
+        <script src="login-handler.js"></script>
+    </div>
+</body>
+</html>

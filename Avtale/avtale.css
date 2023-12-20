@@ -1,0 +1,110 @@
+/* Hoved styling */
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  text-align: center;
+}
+
+                    /* Inputs */
+
+input[type="text"] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="date"],
+input[type="time"] {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+  width: calc(100%);
+}
+
+select {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 16px;
+  margin: 10px 0;
+  padding: 10px;
+  width: calc(100%);
+}
+
+
+                    /* Tabell */
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+
+/* Class & ID */
+
+#register {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  padding: 20px;
+}
+
+                    /* Knapper */
+
+.submitbtn {
+  background-color: #00840d;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  transition: all 0.2s ease 0s;
+}
+
+.submitbtn:hover {
+  background-color: #00950f;
+}
+
+                    /* Containers */
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+
+.table-container {
+  flex-grow: 1;
+  margin-left: 20px;
+}

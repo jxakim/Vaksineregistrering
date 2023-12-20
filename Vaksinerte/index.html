@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrer Vaksinerte</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="vaksinerte.css" type="text/css"/>
+    <script type="text/javascript" src="../validation.js"></script>
     <script type="text/javascript" src="Handle_Data.js"></script>
 </head>
 
@@ -21,7 +22,7 @@
              
             <!-- AnsattId -->
             <label for="ansattId">Ansatt Id</label>
-            <input type="text" id="brukerId" name="ansattId" required maxlength="11">
+            <input type="text" id="ansattId" name="ansattId" required maxlength="11">
             
             <!-- Lokasjon -->
             <label for="lokasjon">Lokasjon: </label>
@@ -32,7 +33,7 @@
             </select>
 
             <!-- Tid -->
-            <label for="tid">Tid:</label>
+            <label for="tid">Tid ferdig:</label>
             <input type="time" id="tid" name="tid" required>
 
             <!-- Date -->
